@@ -18,7 +18,7 @@ namespace Utils
             HasPickedCollectibleBefore = false;
             Checkpoints.Clear();
             PickedUpCollectibles.Clear();
-            // NOTE: We don't need to reset the username
+            Username = null;
         }
     }
 }

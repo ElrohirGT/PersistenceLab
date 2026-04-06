@@ -39,26 +39,29 @@ public class GameStateManager : MonoBehaviour
         State.Username = obj;
         SaveToFile();
     }
-
-    private void Start()
+    
+    private void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            LoadState();
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
-        
-        Instance = this;
-        LoadState();
-        var pickups = FindObjectsByType<PickUp>(FindObjectsSortMode.None);
     }
-
+    
     private void LoadState()
     {
         var path = Path.Combine(Application.persistentDataPath, fileName);
+        Debug.Log($"Trying to load from: {path}");
         if (!File.Exists(path))
         {
             Debug.LogError("Failed to load 'save.txt'! Initializing empty save...");
+            State = new GameState();
         } else {
             var content = File.ReadAllText(path);
             State = JsonUtility.FromJson<GameState>(content);
@@ -69,6 +72,7 @@ public class GameStateManager : MonoBehaviour
     {
         var json = JsonUtility.ToJson(State);
         var path = Path.Combine(Application.persistentDataPath, fileName);
+        Debug.Log($"Saving to: {path}");
         File.WriteAllText(path, json);
     }
 

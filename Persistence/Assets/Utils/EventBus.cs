@@ -41,5 +41,11 @@ namespace Utils
         {
             UsernameChanged?.Invoke(obj);
         }
+
+        public static event Action<Vector3> TeleportPlayer;
+        public static void OnTeleportPlayer(Vector3 obj)
+        {
+            TeleportPlayer?.Invoke(obj);
+        }
     }
 }

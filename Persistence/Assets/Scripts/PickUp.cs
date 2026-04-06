@@ -6,8 +6,9 @@ public class PickUp : MonoBehaviour
 {
     [SerializeField] private string tutorial;
     [SerializeField] private int index;
+    public int Index => index;
 
-    enum PickUpType
+    public enum PickUpType
     {
         Unknown,
         Coin,
@@ -15,6 +16,7 @@ public class PickUp : MonoBehaviour
     }
 
     [SerializeField] private PickUpType type;
+    public PickUpType PickupType => type;
     
     private void OnTriggerEnter(Collider other)
     {

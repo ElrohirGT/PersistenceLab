@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/stylesheet.uss?fileID=7433441132597879392&amp;guid=2ec5a9b40ab729841a5da20242af6fc9&amp;type=3#stylesheet"/>
+    <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+        <ui:VisualElement style="flex-grow: 1; justify-content: center; align-self: auto; align-items: stretch; width: 50%; height: 50%; aspect-ratio: 1; background-color: rgba(0, 0, 0, 0.55); align-content: flex-start; padding-top: 6%; padding-right: 1%; padding-bottom: 1%; padding-left: 1%;">
+            <ui:Label text="Persistence" style="color: rgb(255, 255, 255); font-size: 32px; -unity-text-align: upper-center; -unity-font-style: bold;"/>
+            <ui:TextField label="How should I call you?" placeholder-text="filler text"/>
+            <ui:VisualElement style="flex-grow: 1; aspect-ratio: 1; align-self: center;">
+                <ui:Button text="Play" name="btnPlay"/>
+                <ui:Button text="Delete Save" name="btnDelete"/>
+                <ui:Button text="Quit" name="btnQuit"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

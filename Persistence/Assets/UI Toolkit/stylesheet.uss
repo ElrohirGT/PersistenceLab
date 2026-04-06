@@ -1,0 +1,15 @@
+:root {
+}
+
+Button {
+    -unity-font-style: bold;
+    font-size: 14px;
+}
+
+TextField {
+    color: rgb(0, 128, 16);
+    -unity-text-outline-color: rgb(0, 0, 0);
+    -unity-font-style: bold;
+}
+
+
