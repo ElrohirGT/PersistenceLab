@@ -12,4 +12,12 @@ public class PlayerHitter : MonoBehaviour
             EventBus.OnPlayerHit(damage);
         }
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            EventBus.OnPlayerHit(damage);
+        }
+    }
 }
