@@ -1,33 +1,51 @@
+using System;
 using UnityEngine;
 using Utils;
 
 public class LevelLoader : MonoBehaviour
 {
+    private void OnEnable()
+    {
+        EventBus.PlayerHit += EventBusOnPlayerHit;
+    }
+
+    private void OnDisable()
+    {
+        EventBus.PlayerHit -= EventBusOnPlayerHit;
+    }
+
+    private void EventBusOnPlayerHit(int obj)
+    {
+        Debug.Log("Spawning player!");
+        SpawnPlayer();
+    }
+
+    private void SpawnPlayer()
+    {
+        var pickups = FindObjectsByType<PickUp>(FindObjectsSortMode.None);
+        var state = GameStateManager.Instance.State;
+        if (state.Checkpoints.Count == 0) return;
+
+        var lastIdx = state.Checkpoints[^1];
+        foreach (var pickup in pickups)
+        {
+            if (pickup.PickupType != PickUp.PickUpType.Coin || pickup.Index != lastIdx) continue;
+            EventBus.OnTeleportPlayer(pickup.transform.position);
+        }
+    }
+    
     private void Start()
     {
         var pickups = FindObjectsByType<PickUp>(FindObjectsSortMode.None);
         var state = GameStateManager.Instance.State;
 
-        var shouldTeleport = false;
-        Vector3 teleportLocation = default;
-        if (state.Checkpoints.Count != 0)
-        {
-            var lastIdx = state.Checkpoints[-1];
-            foreach (var pickup in pickups)
-            {
-                if (pickup.PickupType != PickUp.PickUpType.Coin || pickup.Index != lastIdx) continue;
-                shouldTeleport = true;
-                teleportLocation = pickup.transform.position;
-            }
-        }
-        
         foreach (var cpIndex in state.Checkpoints)
         {
             foreach (var pickup in pickups)  
             {
                 if (pickup.PickupType == PickUp.PickUpType.Coin && pickup.Index == cpIndex)
                 {
-                    Destroy(pickup.gameObject);
+                    pickup.Disable();
                 }
             }
         }
@@ -38,14 +56,11 @@ public class LevelLoader : MonoBehaviour
             {
                 if (pickup.PickupType == PickUp.PickUpType.Collectible && pickup.Index == collectIndex)
                 {
-                    Destroy(pickup.gameObject);
+                    pickup.Disable();
                 }
             }
         }
 
-        if (shouldTeleport)
-        {
-            EventBus.OnTeleportPlayer(teleportLocation);
-        }
+        SpawnPlayer();
     }
 }

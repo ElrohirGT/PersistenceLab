@@ -27,6 +27,7 @@ namespace Utils
         public static event Action<string> DisplayTutorial;
         public static void OnDisplayTutorial(string tutorial)
         {
+            Debug.Log($"Display tutorial: {tutorial}");
             DisplayTutorial?.Invoke(tutorial);
         }
 

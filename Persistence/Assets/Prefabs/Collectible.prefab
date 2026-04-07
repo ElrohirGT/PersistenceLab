@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   tutorial: 
   index: 0
-  type: 0
+  type: 2
 --- !u!136 &3912295649021347941
 CapsuleCollider:
   m_ObjectHideFlags: 0

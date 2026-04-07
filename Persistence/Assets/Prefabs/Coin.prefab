@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   tutorial: 
   index: 0
-  type: 0
+  type: 1
 --- !u!1 &8818645198375867445
 GameObject:
   m_ObjectHideFlags: 0

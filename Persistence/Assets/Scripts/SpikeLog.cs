@@ -30,6 +30,7 @@ public class SpikeLog : MonoBehaviour
     {
         secondsAlive = _originalAlive;
         transform.position = _originalPos;
+        transform.rotation = new Quaternion();
         _rigidBody.angularVelocity = Vector3.zero;
         _rigidBody.linearVelocity = Vector3.zero;
     }

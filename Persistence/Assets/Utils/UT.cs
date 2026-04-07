@@ -1,10 +1,11 @@
-﻿namespace Utils
+﻿using UnityEngine;
+
+namespace Utils
 {
     public static class UT
     {
         public static void QuitGame()
         {
-
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else

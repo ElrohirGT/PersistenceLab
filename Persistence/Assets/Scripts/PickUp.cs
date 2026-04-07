@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Utils;
 
@@ -25,25 +24,30 @@ public class PickUp : MonoBehaviour
         {
             case PickUpType.Coin:
                 EventBus.OnCoinPickedUp(index);
+                if (!string.IsNullOrEmpty(tutorial) && FirstCoinPickedUp(GameStateManager.Instance.State))
+                {
+                    GameStateManager.Instance.State.HasPickedCoinBefore = true;
+                    EventBus.OnDisplayTutorial(tutorial);
+                }
                 break;
             case PickUpType.Collectible:
                 EventBus.OnCollectiblePickedUp(index);
+                if (!string.IsNullOrEmpty(tutorial) && FirstCollectible(GameStateManager.Instance.State))
+                {
+                    GameStateManager.Instance.State.HasPickedCollectibleBefore = true;
+                    EventBus.OnDisplayTutorial(tutorial);
+                }
                 break;
         }
 
-        Func<GameState, bool> checker = type switch
-        {
-            PickUpType.Coin => FirstCoinPickedUp,
-            PickUpType.Collectible => FirstCollectible,
-            _ => NeverShowTutorial
-        };
+        Disable();
+    }
 
-        if (!string.IsNullOrEmpty(tutorial) && checker(GameStateManager.Instance.State))
-        {
-            EventBus.OnDisplayTutorial(tutorial);
-        }
-        
-        Destroy(gameObject);
+    public void Disable()
+    {
+        var meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        meshRenderer.enabled = false;
+        enabled = false;
     }
 
     public static bool FirstCoinPickedUp(GameState state)

@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 public class GameStateManager : MonoBehaviour
@@ -14,14 +15,21 @@ public class GameStateManager : MonoBehaviour
         EventBus.CoinPickedUp += EventBusOnCoinPickedUp;
         EventBus.CollectiblePickedUp += EventBusOnCollectiblePickedUp ;
         EventBus.UsernameChanged += EventBusOnUsernameChanged;
+        EventBus.GameEnd += EventBusOnGameEnd;
     }
 
-    
     private void OnDisable()
     {
         EventBus.CoinPickedUp -= EventBusOnCoinPickedUp;
         EventBus.CollectiblePickedUp -= EventBusOnCollectiblePickedUp ;
         EventBus.UsernameChanged -= EventBusOnUsernameChanged;
+        EventBus.GameEnd -= EventBusOnGameEnd;
+    }
+    
+    
+    private void EventBusOnGameEnd()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
     
     private void EventBusOnCoinPickedUp(int obj)
