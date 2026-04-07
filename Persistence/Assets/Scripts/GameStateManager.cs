@@ -88,5 +88,6 @@ public class GameStateManager : MonoBehaviour
     {
         var path = Path.Combine(Application.persistentDataPath, fileName);
         File.Delete(path);
+        Instance.State.Reset();
     }
 }

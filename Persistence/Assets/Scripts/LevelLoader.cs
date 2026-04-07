@@ -30,7 +30,8 @@ public class LevelLoader : MonoBehaviour
         foreach (var pickup in pickups)
         {
             if (pickup.PickupType != PickUp.PickUpType.Coin || pickup.Index != lastIdx) continue;
-            EventBus.OnTeleportPlayer(pickup.transform.position);
+            var position = pickup.transform.position;
+            EventBus.OnTeleportPlayer(position);
         }
     }
     

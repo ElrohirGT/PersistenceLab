@@ -5,7 +5,8 @@ using Utils;
 public class Player : MonoBehaviour
 {
     private CharacterController _controller;
-    private void Start()
+
+    private void Awake()
     {
         _controller = GetComponent<CharacterController>();
     }

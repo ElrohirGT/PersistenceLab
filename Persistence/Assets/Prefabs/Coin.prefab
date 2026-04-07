@@ -148,7 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f151e7af158565b4aaf9a868d08ad0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  tutorial: 
+  tutorial: Coins are checkpoints! If you die, you'll appear on top of the last coin
+    you picked up!
   index: 0
   type: 1
 --- !u!1 &8818645198375867445

@@ -18,7 +18,8 @@ namespace Utils
             HasPickedCollectibleBefore = false;
             Checkpoints.Clear();
             PickedUpCollectibles.Clear();
-            Username = null;
+            Username = "";
+            EventBus.OnUsernameChanged("");
         }
     }
 }
